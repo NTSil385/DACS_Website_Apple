@@ -1,0 +1,155 @@
+﻿@model PagedList.IPagedList<MyWeb.Models.Product>
+@using PagedList.Mvc;
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Share/Admin_ayoutPage1.cshtml";
+    MyWeb.Models.MYWEBEntities1 db = new MyWeb.Models.MYWEBEntities1();
+
+}
+
+
+@section Drop {
+
+    <div class="dropdown" style="cursor: pointer">
+        <div class="dropdown-toggle text-danger" data-toggle="dropdown">
+            <strong>Menu</strong>
+        </div>
+        <div class="dropdown-menu">
+            <a class="dropdown-item" href="/Admin/Iphone">Iphone</a>
+            <a class="dropdown-item" href="/Admin/Imac">Imac</a>
+            <a class="dropdown-item" href="/Admin/Watch">Watch</a>
+            <a class="dropdown-item" href="/Admin/Ipad">Ipad</a>
+            <a class="dropdown-item" href="/Admin/Macbook">Macbook</a>
+            <a class="dropdown-item" href="/Admin/Another">Another</a>
+            <div class="dropdown-divider"></div>
+        </div>
+    </div>
+
+
+}
+
+
+
+
+@section Btn {
+    <li class="nav-item">
+        <a class="nav-link" href="~/Admin/Create">Tạo</a>
+    </li>
+}
+
+@section User {
+    <li class="nav-item" style="margin-left: 20px">
+        @{
+            var user = (MyWeb.Models.Admin)HttpContext.Current.Session["Admin"];
+            <i class="fa-solid fa-user"></i>
+            <span style="margin-left:4px"><strong>@user.FullName</strong></span>
+            <a class="dropdown-item" href="~/Home/Logout"> <strong><i class="fa-solid fa-right-from-bracket"></i></strong></a>
+
+        }
+
+    </li>
+}
+
+<div class="container-item" style="margin: 110px">
+
+    <div class="row">
+
+
+        @foreach (var item in Model)
+        {
+
+            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                <div class="panel panel-default" style="border: 1px solid #ccc; border-radius: 6px; margin: 4px">
+                    <style>
+                        .panel {
+                            height: 600px;
+                        }
+                    </style>
+                    <div class="item" style="padding: 10px">
+                        <div class="panel-heading" style="margin: 5px 0px; height:75px">
+                            <a href="~/Admin/Edit?id=@item.ID" class="btn btn-primary" style="float:right">Sửa</a>
+                            <h5><strong>@item.Name</strong></h5>
+                        </div>
+                        <div class="panel-body" style="margin: 5px 0">
+                            <div class="img-responsive" style="display: flex; max-height: 300px;"><img src="~/Upload/@item.Images" alt="hinh thumnail" class="img-responsive" style="max-width:100%; height: 300px; margin: 4px auto" /></div>
+                            <div class="box" style="margin: 10px 0px">
+                                <p><strong>Giá: </strong>@string.Format("{0:#,0}", item.Price)</p>
+                                <p><strong>Hãng: </strong>@item.Producer</p>
+                                @{
+
+                                    var typa = db.Categories.Find(item.Id_Category);
+                                    if (typa != null)
+                                    {
+
+                                        <p><strong>Loại: </strong>@typa.Name_type</p>
+                                    }
+                                }
+                            </div>
+
+
+                        </div>
+                        <div class="panel-footer clearfix" style="display: flex; align-items: center; justify-content: flex-end; margin: 25px 0px; ">
+                            <div class="pull-right">
+                                <a href="~/Admin/Delete?id=@item.ID" class="btn btn-primary">Xóa</a>
+                                @Html.ActionLink("Chi tiết", "Details", new { id = item.ID }, new { @class = "btn btn-default" })
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        }
+
+        <br />
+
+
+
+
+    </div>
+    <div>
+
+        <div>
+            Trang @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) / @Model.PageCount
+        </div>
+        <div class="">
+            @Html.PagedListPager(Model, page => Url.Action("Iphone", new { page, currentFilter = ViewBag.CurrentFilter }))
+            <style>
+                .pagination-container {
+                }
+
+                .pagination {
+                    display: flex;
+                }
+
+                ul {
+                    align-items: center;
+                }
+
+                li {
+                    margin: 0 5px;
+                }
+
+                .active {
+                    display: flex;
+                    border: 1px solid #ff7956;
+                    color: #fff;
+                    border-radius: 6px;
+                    width: 50px;
+                    height: 35px;
+                    background-color: #ff7956;
+                    align-items: center;
+                    text-align: center;
+                    justify-content: center;
+                }
+
+                    .active:hover {
+                        color: #ff7956;
+                        border: 1px solid #ff7956;
+                        background-color: aliceblue;
+                        cursor: pointer
+                    }
+            </style>
+        </div>
+    </div>
+</div>

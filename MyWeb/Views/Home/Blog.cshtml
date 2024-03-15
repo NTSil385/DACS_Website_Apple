@@ -1,0 +1,137 @@
+﻿@model PagedList.IPagedList<MyWeb.Models.Post>
+@using PagedList.Mvc;
+
+@{
+    ViewBag.Title = "Blog";
+    Layout = "~/Views/Share/Using_LayoutPage1.cshtml";
+    MyWeb.Models.MYWEBEntities1 db = new MyWeb.Models.MYWEBEntities1();
+
+}
+
+
+
+
+@section User {
+    <li class="nav-item" style="margin-left: 20px">
+        @{
+            var user = (MyWeb.Models.User)HttpContext.Current.Session["username"];
+            <a href="~/Home/Info?id=@user.ID" class="btn btn-outline-info">
+                <span style="margin-left:4px; color: black; "><strong>@user.FullName</strong></span>
+            </a>
+            <a class="dropdown-item" href="~/Home/Logout">
+                <strong><i class="fa-solid fa-right-from-bracket" style="color: black; float:right"></i></strong>
+            </a>
+        }
+    </li>
+}
+
+<div class="container-item" style="margin: 110px;">
+
+
+
+    <div class="row">
+        <h2>TIN TỨC</h2>
+
+    </div>
+    <div class="row" style="display:flex; align-items:center; justify-content:center">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/brands.min.css" integrity="sha512-9YHSK59/rjvhtDcY/b+4rdnl0V4LPDWdkKceBl8ZLF5TB6745ml1AfluEU6dFWqwDw9lPvnauxFgpKvJqp7jiQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+
+
+        @foreach (var item in Model)
+        {
+
+            <div class="col-9" style="border: 1px solid #ccc; border-radius: 6px; margin: 4px;">
+                <div class="panel panel-default">
+                    <style>
+                        .panel {
+                            height: auto;
+                        }
+                    </style>
+                    <div class="item" style="padding: 10px">
+                        <div class="panel-heading" style="margin: 5px 0px">
+
+                            <h5><strong>@item.Title</strong></h5>
+                        </div>
+                        <div class="panel-body" style="margin: 5px 0">
+                            <div class="img-responsive" style="display: flex"><img src="~/Upload/@item.images" alt="hinh thumnail" class="img-responsive" style="max-width:100%;width:75%; height:10%; margin: 4px auto" /></div>
+                            <div class="box" style="margin: 10px 0px">
+                                <strong>Chủ đề</strong>
+                                @{
+
+                                    var typa = db.PostCategories.SingleOrDefault(s => s.ID == item.ID_postcategory);
+                                    if (typa != null)
+                                    {
+
+                                        <p>@typa.Name_type</p>
+                                    }
+                                }
+                                <strong>Mô tả:</strong>
+                                <p>@item.Description</p>
+
+
+                            </div>
+                        </div>
+                        <div class="panel-footer">
+                            <a class="btn btn-outline-info" href="@item.URL" style="margin: 10px 0px;float:right">Read more...</a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        }
+
+        <br />
+
+
+
+
+    </div>
+    <div>
+
+
+    </div>
+    <div>
+        Trang @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) / @Model.PageCount
+    </div>
+    <div class="">
+        @Html.PagedListPager(Model, page => Url.Action("Blog", new { page, currentFilter = ViewBag.CurrentFilter }))
+        <style>
+            .pagination-container {
+            }
+
+            .pagination {
+                display: flex;
+            }
+
+            ul {
+                align-items: center;
+            }
+
+            li {
+                margin: 0 5px;
+            }
+
+            .active {
+                display: flex;
+                border: 1px solid #9acdf3;
+                color: #fff;
+                border-radius: 6px;
+                width: 50px;
+                height: 35px;
+                background-color: #9acdf3;
+                align-items: center;
+                text-align: center;
+                justify-content: center;
+            }
+
+                .active:hover {
+                    color: black;
+                    border: 1px solid #9acdf3;
+                    background-color: #9acdf1;
+                    cursor: pointer
+                }
+        </style>
+    </div>
+</div>

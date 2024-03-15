@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="d65ba34d459f4467801d096913da9c8d" Name="Diagram1">
+        <EntityTypeShape EntityType="MYWEBModel.Admin" Width="1.5" PointX="7.75" PointY="5.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="MYWEBModel.Bill_Sales" Width="1.5" PointX="3" PointY="4.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="MYWEBModel.Category" Width="1.5" PointX="0.75" PointY="13.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="MYWEBModel.Contact" Width="1.5" PointX="5.75" PointY="9.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="MYWEBModel.Event" Width="1.5" PointX="3" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MYWEBModel.Info_BillSales" Width="1.5" PointX="5.25" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="MYWEBModel.Post" Width="1.5" PointX="10" PointY="1.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="MYWEBModel.PostCategory" Width="1.5" PointX="7.75" PointY="2.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="MYWEBModel.Product" Width="1.5" PointX="3" PointY="12.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="MYWEBModel.Promotion_Apply" Width="1.5" PointX="5.25" PointY="2.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="MYWEBModel.Status" Width="1.5" PointX="0.75" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="MYWEBModel.sysdiagram" Width="1.5" PointX="7.75" PointY="9.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="MYWEBModel.User" Width="1.5" PointX="0.75" PointY="4.5" IsExpanded="true" />
+        <AssociationConnector Association="MYWEBModel.FK_Bill_Sales_Status" ManuallyRouted="false" />
+        <AssociationConnector Association="MYWEBModel.FK_Bill_Sales_User" ManuallyRouted="false" />
+        <AssociationConnector Association="MYWEBModel.FK_Info_BillSales_Bill_Sales1" ManuallyRouted="false" />
+        <AssociationConnector Association="MYWEBModel.FK_Promotion_Apply_Bill_Sales" ManuallyRouted="false" />
+        <AssociationConnector Association="MYWEBModel.FK_Product_Category" ManuallyRouted="false" />
+        <AssociationConnector Association="MYWEBModel.FK_Promotion_Apply_Event" ManuallyRouted="false" />
+        <AssociationConnector Association="MYWEBModel.FK_Info_BillSales_Product" ManuallyRouted="false" />
+        <AssociationConnector Association="MYWEBModel.FK_Post_PostCategory" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="MYWEBModel.Import" Width="1.5" PointX="10" PointY="5.5" />
+        <EntityTypeShape EntityType="MYWEBModel.Imprt_Details" Width="1.5" PointX="12.25" PointY="9.375" />
+        <EntityTypeShape EntityType="MYWEBModel.Producer" Width="1.5" PointX="7.75" PointY="13.75" />
+        <AssociationConnector Association="MYWEBModel.FK_Import_Admin" />
+        <AssociationConnector Association="MYWEBModel.FK_Import_Producer" />
+        <AssociationConnector Association="MYWEBModel.FK_Imprt_Details_Import" />
+        <AssociationConnector Association="MYWEBModel.FK_Imprt_Details_Product" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

@@ -1,0 +1,1035 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="MYWEBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Admin">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FullName" Type="nvarchar" MaxLength="200" />
+          <Property Name="Email" Type="nvarchar" MaxLength="50" />
+          <Property Name="PhoneNumber" Type="nvarchar" MaxLength="50" />
+          <Property Name="Birthday" Type="date" />
+          <Property Name="Address" Type="nvarchar" MaxLength="200" />
+          <Property Name="userName" Type="nvarchar" MaxLength="500" />
+          <Property Name="password" Type="nvarchar" MaxLength="50" />
+          <Property Name="ResetPasswordCode" Type="nvarchar" MaxLength="500" />
+        </EntityType>
+        <EntityType Name="Bill_Sales">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DateFounded" Type="smalldatetime" />
+          <Property Name="Id_User" Type="int" />
+          <Property Name="Total" Type="float" />
+          <Property Name="Status" Type="int" />
+          <Property Name="Des" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="Category">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name_type" Type="nchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="Contact">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="500" />
+          <Property Name="PhoneNumber" Type="nvarchar" MaxLength="50" />
+          <Property Name="Message" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="Event">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Event_Name" Type="nvarchar" MaxLength="200" />
+          <Property Name="DateStart" Type="smalldatetime" />
+          <Property Name="DateEnd" Type="smalldatetime" />
+          <Property Name="Quantity" Type="int" />
+          <Property Name="Fomular" Type="nvarchar(max)" />
+          <Property Name="DisscountPercent" Type="float" />
+          <Property Name="Status" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Import">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DateImprt" Type="smalldatetime" />
+          <Property Name="IdAdmin" Type="int" />
+          <Property Name="IdProducer" Type="int" />
+          <Property Name="Total" Type="float" />
+          <Property Name="Status" Type="bit" />
+        </EntityType>
+        <EntityType Name="Imprt_Details">
+          <Key>
+            <PropertyRef Name="IdImport" />
+            <PropertyRef Name="IdProduct" />
+          </Key>
+          <Property Name="IdImport" Type="int" Nullable="false" />
+          <Property Name="IdProduct" Type="int" Nullable="false" />
+          <Property Name="Price" Type="float" />
+          <Property Name="Quantity" Type="int" />
+          <Property Name="Total" Type="float" />
+        </EntityType>
+        <EntityType Name="Info_BillSales">
+          <Key>
+            <PropertyRef Name="ID_BillSale" />
+            <PropertyRef Name="ID_Product" />
+          </Key>
+          <Property Name="ID_BillSale" Type="int" Nullable="false" />
+          <Property Name="ID_Product" Type="int" Nullable="false" />
+          <Property Name="Quantity" Type="int" />
+          <Property Name="Total" Type="float" />
+          <Property Name="Price" Type="float" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Post">
+          <Key>
+            <PropertyRef Name="PostID" />
+          </Key>
+          <Property Name="PostID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Title" Type="nvarchar(max)" />
+          <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="URL" Type="nvarchar(max)" />
+          <Property Name="Author" Type="nvarchar" MaxLength="500" />
+          <Property Name="DateCreated" Type="datetime" />
+          <Property Name="ID_postcategory" Type="int" />
+          <Property Name="images" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="PostCategory">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name_type" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Producer">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="500" />
+          <Property Name="Address" Type="nvarchar" MaxLength="500" />
+          <Property Name="PhoneNumber" Type="nvarchar" MaxLength="50" />
+          <Property Name="Email" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Product">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="200" />
+          <Property Name="Discription" Type="nvarchar(max)" />
+          <Property Name="Images" Type="nvarchar" MaxLength="200" />
+          <Property Name="Price" Type="float" />
+          <Property Name="Disscount" Type="float" />
+          <Property Name="Producer" Type="nvarchar" MaxLength="200" />
+          <Property Name="Id_Category" Type="int" />
+        </EntityType>
+        <EntityType Name="Promotion_Apply">
+          <Key>
+            <PropertyRef Name="ID_Event" />
+            <PropertyRef Name="ID_BillSale" />
+          </Key>
+          <Property Name="ID_Event" Type="int" Nullable="false" />
+          <Property Name="ID_BillSale" Type="int" Nullable="false" />
+          <Property Name="Note" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="Status">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Status" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FullName" Type="nvarchar" MaxLength="200" />
+          <Property Name="PhoneNumber" Type="nvarchar" MaxLength="50" />
+          <Property Name="Email" Type="nvarchar" MaxLength="200" />
+          <Property Name="Address" Type="nvarchar" MaxLength="300" />
+          <Property Name="Sex" Type="nvarchar" MaxLength="50" />
+          <Property Name="Birthday" Type="date" />
+          <Property Name="username" Type="nvarchar" MaxLength="500" />
+          <Property Name="password" Type="nvarchar" MaxLength="50" />
+          <Property Name="ResetPasswordCode" Type="nvarchar" MaxLength="500" />
+        </EntityType>
+        <Association Name="FK_Bill_Sales_Status">
+          <End Role="Status" Type="Self.Status" Multiplicity="0..1" />
+          <End Role="Bill_Sales" Type="Self.Bill_Sales" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Status">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Bill_Sales">
+              <PropertyRef Name="Status" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Bill_Sales_User">
+          <End Role="User" Type="Self.User" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Bill_Sales" Type="Self.Bill_Sales" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Bill_Sales">
+              <PropertyRef Name="Id_User" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Import_Admin">
+          <End Role="Admin" Type="Self.Admin" Multiplicity="0..1" />
+          <End Role="Import" Type="Self.Import" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Admin">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Import">
+              <PropertyRef Name="IdAdmin" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Import_Producer">
+          <End Role="Producer" Type="Self.Producer" Multiplicity="0..1" />
+          <End Role="Import" Type="Self.Import" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Producer">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Import">
+              <PropertyRef Name="IdProducer" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Imprt_Details_Import">
+          <End Role="Import" Type="Self.Import" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Imprt_Details" Type="Self.Imprt_Details" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Import">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Imprt_Details">
+              <PropertyRef Name="IdImport" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Imprt_Details_Product">
+          <End Role="Product" Type="Self.Product" Multiplicity="1" />
+          <End Role="Imprt_Details" Type="Self.Imprt_Details" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Imprt_Details">
+              <PropertyRef Name="IdProduct" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Info_BillSales_Bill_Sales1">
+          <End Role="Bill_Sales" Type="Self.Bill_Sales" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Info_BillSales" Type="Self.Info_BillSales" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Bill_Sales">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Info_BillSales">
+              <PropertyRef Name="ID_BillSale" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Info_BillSales_Product">
+          <End Role="Product" Type="Self.Product" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Info_BillSales" Type="Self.Info_BillSales" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Info_BillSales">
+              <PropertyRef Name="ID_Product" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Post_PostCategory">
+          <End Role="PostCategory" Type="Self.PostCategory" Multiplicity="0..1" />
+          <End Role="Post" Type="Self.Post" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PostCategory">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Post">
+              <PropertyRef Name="ID_postcategory" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Product_Category">
+          <End Role="Category" Type="Self.Category" Multiplicity="0..1" />
+          <End Role="Product" Type="Self.Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Product">
+              <PropertyRef Name="Id_Category" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Promotion_Apply_Bill_Sales">
+          <End Role="Bill_Sales" Type="Self.Bill_Sales" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Promotion_Apply" Type="Self.Promotion_Apply" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Bill_Sales">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Promotion_Apply">
+              <PropertyRef Name="ID_BillSale" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Promotion_Apply_Event">
+          <End Role="Event" Type="Self.Event" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Promotion_Apply" Type="Self.Promotion_Apply" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Event">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Promotion_Apply">
+              <PropertyRef Name="ID_Event" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="MYWEBModelStoreContainer">
+          <EntitySet Name="Admin" EntityType="Self.Admin" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Bill_Sales" EntityType="Self.Bill_Sales" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Category" EntityType="Self.Category" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Contact" EntityType="Self.Contact" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Event" EntityType="Self.Event" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Import" EntityType="Self.Import" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Imprt_Details" EntityType="Self.Imprt_Details" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Info_BillSales" EntityType="Self.Info_BillSales" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Post" EntityType="Self.Post" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PostCategory" EntityType="Self.PostCategory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Producer" EntityType="Self.Producer" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Product" EntityType="Self.Product" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Promotion_Apply" EntityType="Self.Promotion_Apply" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Status" EntityType="Self.Status" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Bill_Sales_Status" Association="Self.FK_Bill_Sales_Status">
+            <End Role="Status" EntitySet="Status" />
+            <End Role="Bill_Sales" EntitySet="Bill_Sales" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Bill_Sales_User" Association="Self.FK_Bill_Sales_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="Bill_Sales" EntitySet="Bill_Sales" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Import_Admin" Association="Self.FK_Import_Admin">
+            <End Role="Admin" EntitySet="Admin" />
+            <End Role="Import" EntitySet="Import" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Import_Producer" Association="Self.FK_Import_Producer">
+            <End Role="Producer" EntitySet="Producer" />
+            <End Role="Import" EntitySet="Import" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Imprt_Details_Import" Association="Self.FK_Imprt_Details_Import">
+            <End Role="Import" EntitySet="Import" />
+            <End Role="Imprt_Details" EntitySet="Imprt_Details" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Imprt_Details_Product" Association="Self.FK_Imprt_Details_Product">
+            <End Role="Product" EntitySet="Product" />
+            <End Role="Imprt_Details" EntitySet="Imprt_Details" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Info_BillSales_Bill_Sales1" Association="Self.FK_Info_BillSales_Bill_Sales1">
+            <End Role="Bill_Sales" EntitySet="Bill_Sales" />
+            <End Role="Info_BillSales" EntitySet="Info_BillSales" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Info_BillSales_Product" Association="Self.FK_Info_BillSales_Product">
+            <End Role="Product" EntitySet="Product" />
+            <End Role="Info_BillSales" EntitySet="Info_BillSales" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Post_PostCategory" Association="Self.FK_Post_PostCategory">
+            <End Role="PostCategory" EntitySet="PostCategory" />
+            <End Role="Post" EntitySet="Post" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Product_Category" Association="Self.FK_Product_Category">
+            <End Role="Category" EntitySet="Category" />
+            <End Role="Product" EntitySet="Product" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Promotion_Apply_Bill_Sales" Association="Self.FK_Promotion_Apply_Bill_Sales">
+            <End Role="Bill_Sales" EntitySet="Bill_Sales" />
+            <End Role="Promotion_Apply" EntitySet="Promotion_Apply" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Promotion_Apply_Event" Association="Self.FK_Promotion_Apply_Event">
+            <End Role="Event" EntitySet="Event" />
+            <End Role="Promotion_Apply" EntitySet="Promotion_Apply" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="MYWEBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Admin">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FullName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Birthday" Type="DateTime" Precision="0" />
+          <Property Name="Address" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="userName" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ResetPasswordCode" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Imports" Relationship="MYWEBModel.FK_Import_Admin" FromRole="Admin" ToRole="Import" />
+        </EntityType>
+        <EntityType Name="Bill_Sales">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DateFounded" Type="DateTime" Precision="0" />
+          <Property Name="Id_User" Type="Int32" />
+          <Property Name="Total" Type="Double" />
+          <Property Name="Status" Type="Int32" />
+          <Property Name="Des" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Status1" Relationship="Self.FK_Bill_Sales_Status" FromRole="Bill_Sales" ToRole="Status" />
+          <NavigationProperty Name="User" Relationship="Self.FK_Bill_Sales_User" FromRole="Bill_Sales" ToRole="User" />
+          <NavigationProperty Name="Info_BillSales" Relationship="Self.FK_Info_BillSales_Bill_Sales1" FromRole="Bill_Sales" ToRole="Info_BillSales" />
+          <NavigationProperty Name="Promotion_Apply" Relationship="Self.FK_Promotion_Apply_Bill_Sales" FromRole="Bill_Sales" ToRole="Promotion_Apply" />
+        </EntityType>
+        <EntityType Name="Category">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name_type" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="Products" Relationship="Self.FK_Product_Category" FromRole="Category" ToRole="Product" />
+        </EntityType>
+        <EntityType Name="Contact">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Email" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Message" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Event">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Event_Name" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="DateStart" Type="DateTime" Precision="0" />
+          <Property Name="DateEnd" Type="DateTime" Precision="0" />
+          <Property Name="Quantity" Type="Int32" />
+          <Property Name="Fomular" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="DisscountPercent" Type="Double" />
+          <Property Name="Status" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Promotion_Apply" Relationship="Self.FK_Promotion_Apply_Event" FromRole="Event" ToRole="Promotion_Apply" />
+        </EntityType>
+        <EntityType Name="Info_BillSales">
+          <Key>
+            <PropertyRef Name="ID_BillSale" />
+            <PropertyRef Name="ID_Product" />
+          </Key>
+          <Property Name="ID_BillSale" Type="Int32" Nullable="false" />
+          <Property Name="ID_Product" Type="Int32" Nullable="false" />
+          <Property Name="Quantity" Type="Int32" />
+          <Property Name="Total" Type="Double" />
+          <Property Name="Price" Type="Double" Nullable="false" />
+          <NavigationProperty Name="Bill_Sales" Relationship="Self.FK_Info_BillSales_Bill_Sales1" FromRole="Info_BillSales" ToRole="Bill_Sales" />
+          <NavigationProperty Name="Product" Relationship="Self.FK_Info_BillSales_Product" FromRole="Info_BillSales" ToRole="Product" />
+        </EntityType>
+        <EntityType Name="Post">
+          <Key>
+            <PropertyRef Name="PostID" />
+          </Key>
+          <Property Name="PostID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="URL" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Author" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="DateCreated" Type="DateTime" Precision="3" />
+          <Property Name="ID_postcategory" Type="Int32" />
+          <Property Name="images" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="PostCategory" Relationship="Self.FK_Post_PostCategory" FromRole="Post" ToRole="PostCategory" />
+        </EntityType>
+        <EntityType Name="PostCategory">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name_type" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Posts" Relationship="Self.FK_Post_PostCategory" FromRole="PostCategory" ToRole="Post" />
+        </EntityType>
+        <EntityType Name="Product">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Discription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Images" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Price" Type="Double" />
+          <Property Name="Disscount" Type="Double" />
+          <Property Name="Producer" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Id_Category" Type="Int32" />
+          <NavigationProperty Name="Category" Relationship="Self.FK_Product_Category" FromRole="Product" ToRole="Category" />
+          <NavigationProperty Name="Info_BillSales" Relationship="Self.FK_Info_BillSales_Product" FromRole="Product" ToRole="Info_BillSales" />
+          <NavigationProperty Name="Imprt_Details" Relationship="MYWEBModel.FK_Imprt_Details_Product" FromRole="Product" ToRole="Imprt_Details" />
+        </EntityType>
+        <EntityType Name="Promotion_Apply">
+          <Key>
+            <PropertyRef Name="ID_Event" />
+            <PropertyRef Name="ID_BillSale" />
+          </Key>
+          <Property Name="ID_Event" Type="Int32" Nullable="false" />
+          <Property Name="ID_BillSale" Type="Int32" Nullable="false" />
+          <Property Name="Note" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Bill_Sales" Relationship="Self.FK_Promotion_Apply_Bill_Sales" FromRole="Promotion_Apply" ToRole="Bill_Sales" />
+          <NavigationProperty Name="Event" Relationship="Self.FK_Promotion_Apply_Event" FromRole="Promotion_Apply" ToRole="Event" />
+        </EntityType>
+        <EntityType Name="Status">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Status1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Bill_Sales" Relationship="Self.FK_Bill_Sales_Status" FromRole="Status" ToRole="Bill_Sales" />
+        </EntityType>
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FullName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Address" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="Sex" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Birthday" Type="DateTime" Precision="0" />
+          <Property Name="username" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ResetPasswordCode" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Bill_Sales" Relationship="Self.FK_Bill_Sales_User" FromRole="User" ToRole="Bill_Sales" />
+        </EntityType>
+        <Association Name="FK_Bill_Sales_Status">
+          <End Role="Status" Type="Self.Status" Multiplicity="0..1" />
+          <End Role="Bill_Sales" Type="Self.Bill_Sales" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Status">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Bill_Sales">
+              <PropertyRef Name="Status" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Bill_Sales_User">
+          <End Role="User" Type="Self.User" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Bill_Sales" Type="Self.Bill_Sales" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Bill_Sales">
+              <PropertyRef Name="Id_User" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Info_BillSales_Bill_Sales1">
+          <End Role="Bill_Sales" Type="Self.Bill_Sales" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Info_BillSales" Type="Self.Info_BillSales" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Bill_Sales">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Info_BillSales">
+              <PropertyRef Name="ID_BillSale" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Promotion_Apply_Bill_Sales">
+          <End Role="Bill_Sales" Type="Self.Bill_Sales" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Promotion_Apply" Type="Self.Promotion_Apply" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Bill_Sales">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Promotion_Apply">
+              <PropertyRef Name="ID_BillSale" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Product_Category">
+          <End Role="Category" Type="Self.Category" Multiplicity="0..1" />
+          <End Role="Product" Type="Self.Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Product">
+              <PropertyRef Name="Id_Category" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Promotion_Apply_Event">
+          <End Role="Event" Type="Self.Event" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Promotion_Apply" Type="Self.Promotion_Apply" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Event">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Promotion_Apply">
+              <PropertyRef Name="ID_Event" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Info_BillSales_Product">
+          <End Role="Product" Type="Self.Product" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Info_BillSales" Type="Self.Info_BillSales" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Info_BillSales">
+              <PropertyRef Name="ID_Product" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Post_PostCategory">
+          <End Role="PostCategory" Type="Self.PostCategory" Multiplicity="0..1" />
+          <End Role="Post" Type="Self.Post" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PostCategory">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Post">
+              <PropertyRef Name="ID_postcategory" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="MYWEBEntities1" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Admins" EntityType="Self.Admin" />
+          <EntitySet Name="Bill_Sales" EntityType="Self.Bill_Sales" />
+          <EntitySet Name="Categories" EntityType="Self.Category" />
+          <EntitySet Name="Contacts" EntityType="Self.Contact" />
+          <EntitySet Name="Events" EntityType="Self.Event" />
+          <EntitySet Name="Info_BillSales" EntityType="Self.Info_BillSales" />
+          <EntitySet Name="Posts" EntityType="Self.Post" />
+          <EntitySet Name="PostCategories" EntityType="Self.PostCategory" />
+          <EntitySet Name="Products" EntityType="Self.Product" />
+          <EntitySet Name="Promotion_Apply" EntityType="Self.Promotion_Apply" />
+          <EntitySet Name="Status" EntityType="Self.Status" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+          <EntitySet Name="Users" EntityType="Self.User" />
+          <AssociationSet Name="FK_Bill_Sales_Status" Association="Self.FK_Bill_Sales_Status">
+            <End Role="Status" EntitySet="Status" />
+            <End Role="Bill_Sales" EntitySet="Bill_Sales" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Bill_Sales_User" Association="Self.FK_Bill_Sales_User">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Bill_Sales" EntitySet="Bill_Sales" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Info_BillSales_Bill_Sales1" Association="Self.FK_Info_BillSales_Bill_Sales1">
+            <End Role="Bill_Sales" EntitySet="Bill_Sales" />
+            <End Role="Info_BillSales" EntitySet="Info_BillSales" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Promotion_Apply_Bill_Sales" Association="Self.FK_Promotion_Apply_Bill_Sales">
+            <End Role="Bill_Sales" EntitySet="Bill_Sales" />
+            <End Role="Promotion_Apply" EntitySet="Promotion_Apply" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Product_Category" Association="Self.FK_Product_Category">
+            <End Role="Category" EntitySet="Categories" />
+            <End Role="Product" EntitySet="Products" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Promotion_Apply_Event" Association="Self.FK_Promotion_Apply_Event">
+            <End Role="Event" EntitySet="Events" />
+            <End Role="Promotion_Apply" EntitySet="Promotion_Apply" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Info_BillSales_Product" Association="Self.FK_Info_BillSales_Product">
+            <End Role="Product" EntitySet="Products" />
+            <End Role="Info_BillSales" EntitySet="Info_BillSales" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Post_PostCategory" Association="Self.FK_Post_PostCategory">
+            <End Role="PostCategory" EntitySet="PostCategories" />
+            <End Role="Post" EntitySet="Posts" />
+          </AssociationSet>
+          <EntitySet Name="Imports" EntityType="MYWEBModel.Import" />
+          <EntitySet Name="Imprt_Details" EntityType="MYWEBModel.Imprt_Details" />
+          <EntitySet Name="Producers" EntityType="MYWEBModel.Producer" />
+          <AssociationSet Name="FK_Import_Admin" Association="MYWEBModel.FK_Import_Admin">
+            <End Role="Admin" EntitySet="Admins" />
+            <End Role="Import" EntitySet="Imports" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Import_Producer" Association="MYWEBModel.FK_Import_Producer">
+            <End Role="Producer" EntitySet="Producers" />
+            <End Role="Import" EntitySet="Imports" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Imprt_Details_Import" Association="MYWEBModel.FK_Imprt_Details_Import">
+            <End Role="Import" EntitySet="Imports" />
+            <End Role="Imprt_Details" EntitySet="Imprt_Details" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Imprt_Details_Product" Association="MYWEBModel.FK_Imprt_Details_Product">
+            <End Role="Product" EntitySet="Products" />
+            <End Role="Imprt_Details" EntitySet="Imprt_Details" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Import">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DateImprt" Type="DateTime" Precision="0" />
+          <Property Name="IdAdmin" Type="Int32" />
+          <Property Name="IdProducer" Type="Int32" />
+          <Property Name="Total" Type="Double" />
+          <Property Name="Status" Type="Boolean" />
+          <NavigationProperty Name="Admin" Relationship="MYWEBModel.FK_Import_Admin" FromRole="Import" ToRole="Admin" />
+          <NavigationProperty Name="Producer" Relationship="MYWEBModel.FK_Import_Producer" FromRole="Import" ToRole="Producer" />
+          <NavigationProperty Name="Imprt_Details" Relationship="MYWEBModel.FK_Imprt_Details_Import" FromRole="Import" ToRole="Imprt_Details" />
+        </EntityType>
+        <EntityType Name="Imprt_Details">
+          <Key>
+            <PropertyRef Name="IdImport" />
+            <PropertyRef Name="IdProduct" />
+          </Key>
+          <Property Name="IdImport" Type="Int32" Nullable="false" />
+          <Property Name="IdProduct" Type="Int32" Nullable="false" />
+          <Property Name="Price" Type="Double" />
+          <Property Name="Quantity" Type="Int32" />
+          <Property Name="Total" Type="Double" />
+          <NavigationProperty Name="Import" Relationship="MYWEBModel.FK_Imprt_Details_Import" FromRole="Imprt_Details" ToRole="Import" />
+          <NavigationProperty Name="Product" Relationship="MYWEBModel.FK_Imprt_Details_Product" FromRole="Imprt_Details" ToRole="Product" />
+        </EntityType>
+        <EntityType Name="Producer">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Address" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Imports" Relationship="MYWEBModel.FK_Import_Producer" FromRole="Producer" ToRole="Import" />
+        </EntityType>
+        <Association Name="FK_Import_Admin">
+          <End Type="MYWEBModel.Admin" Role="Admin" Multiplicity="0..1" />
+          <End Type="MYWEBModel.Import" Role="Import" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Admin">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Import">
+              <PropertyRef Name="IdAdmin" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Import_Producer">
+          <End Type="MYWEBModel.Producer" Role="Producer" Multiplicity="0..1" />
+          <End Type="MYWEBModel.Import" Role="Import" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Producer">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Import">
+              <PropertyRef Name="IdProducer" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Imprt_Details_Import">
+          <End Type="MYWEBModel.Import" Role="Import" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="MYWEBModel.Imprt_Details" Role="Imprt_Details" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Import">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Imprt_Details">
+              <PropertyRef Name="IdImport" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Imprt_Details_Product">
+          <End Type="MYWEBModel.Product" Role="Product" Multiplicity="1" />
+          <End Type="MYWEBModel.Imprt_Details" Role="Imprt_Details" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Imprt_Details">
+              <PropertyRef Name="IdProduct" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="MYWEBModelStoreContainer" CdmEntityContainer="MYWEBEntities1">
+          <EntitySetMapping Name="Admins">
+            <EntityTypeMapping TypeName="MYWEBModel.Admin">
+              <MappingFragment StoreEntitySet="Admin">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="FullName" ColumnName="FullName" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="Birthday" ColumnName="Birthday" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="userName" ColumnName="userName" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="ResetPasswordCode" ColumnName="ResetPasswordCode" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Bill_Sales">
+            <EntityTypeMapping TypeName="MYWEBModel.Bill_Sales">
+              <MappingFragment StoreEntitySet="Bill_Sales">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="DateFounded" ColumnName="DateFounded" />
+                <ScalarProperty Name="Id_User" ColumnName="Id_User" />
+                <ScalarProperty Name="Total" ColumnName="Total" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Des" ColumnName="Des" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Categories">
+            <EntityTypeMapping TypeName="MYWEBModel.Category">
+              <MappingFragment StoreEntitySet="Category">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name_type" ColumnName="Name_type" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Contacts">
+            <EntityTypeMapping TypeName="MYWEBModel.Contact">
+              <MappingFragment StoreEntitySet="Contact">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="Message" ColumnName="Message" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Events">
+            <EntityTypeMapping TypeName="MYWEBModel.Event">
+              <MappingFragment StoreEntitySet="Event">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Event_Name" ColumnName="Event_Name" />
+                <ScalarProperty Name="DateStart" ColumnName="DateStart" />
+                <ScalarProperty Name="DateEnd" ColumnName="DateEnd" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="Fomular" ColumnName="Fomular" />
+                <ScalarProperty Name="DisscountPercent" ColumnName="DisscountPercent" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Info_BillSales">
+            <EntityTypeMapping TypeName="MYWEBModel.Info_BillSales">
+              <MappingFragment StoreEntitySet="Info_BillSales">
+                <ScalarProperty Name="ID_BillSale" ColumnName="ID_BillSale" />
+                <ScalarProperty Name="ID_Product" ColumnName="ID_Product" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="Total" ColumnName="Total" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Posts">
+            <EntityTypeMapping TypeName="MYWEBModel.Post">
+              <MappingFragment StoreEntitySet="Post">
+                <ScalarProperty Name="PostID" ColumnName="PostID" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="URL" ColumnName="URL" />
+                <ScalarProperty Name="Author" ColumnName="Author" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+                <ScalarProperty Name="ID_postcategory" ColumnName="ID_postcategory" />
+                <ScalarProperty Name="images" ColumnName="images" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PostCategories">
+            <EntityTypeMapping TypeName="MYWEBModel.PostCategory">
+              <MappingFragment StoreEntitySet="PostCategory">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name_type" ColumnName="Name_type" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Products">
+            <EntityTypeMapping TypeName="MYWEBModel.Product">
+              <MappingFragment StoreEntitySet="Product">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Discription" ColumnName="Discription" />
+                <ScalarProperty Name="Images" ColumnName="Images" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="Disscount" ColumnName="Disscount" />
+                <ScalarProperty Name="Producer" ColumnName="Producer" />
+                <ScalarProperty Name="Id_Category" ColumnName="Id_Category" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Promotion_Apply">
+            <EntityTypeMapping TypeName="MYWEBModel.Promotion_Apply">
+              <MappingFragment StoreEntitySet="Promotion_Apply">
+                <ScalarProperty Name="ID_Event" ColumnName="ID_Event" />
+                <ScalarProperty Name="ID_BillSale" ColumnName="ID_BillSale" />
+                <ScalarProperty Name="Note" ColumnName="Note" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Status">
+            <EntityTypeMapping TypeName="MYWEBModel.Status">
+              <MappingFragment StoreEntitySet="Status">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Status1" ColumnName="Status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="MYWEBModel.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="MYWEBModel.User">
+              <MappingFragment StoreEntitySet="User">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="FullName" ColumnName="FullName" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Sex" ColumnName="Sex" />
+                <ScalarProperty Name="Birthday" ColumnName="Birthday" />
+                <ScalarProperty Name="username" ColumnName="username" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="ResetPasswordCode" ColumnName="ResetPasswordCode" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Imports">
+            <EntityTypeMapping TypeName="MYWEBModel.Import">
+              <MappingFragment StoreEntitySet="Import">
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Total" ColumnName="Total" />
+                <ScalarProperty Name="IdProducer" ColumnName="IdProducer" />
+                <ScalarProperty Name="IdAdmin" ColumnName="IdAdmin" />
+                <ScalarProperty Name="DateImprt" ColumnName="DateImprt" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Imprt_Details">
+            <EntityTypeMapping TypeName="MYWEBModel.Imprt_Details">
+              <MappingFragment StoreEntitySet="Imprt_Details">
+                <ScalarProperty Name="Total" ColumnName="Total" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="IdProduct" ColumnName="IdProduct" />
+                <ScalarProperty Name="IdImport" ColumnName="IdImport" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Producers">
+            <EntityTypeMapping TypeName="MYWEBModel.Producer">
+              <MappingFragment StoreEntitySet="Producer">
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

@@ -1,0 +1,41 @@
+﻿@model MyWeb.Models.Import
+
+
+<h2>createImport</h2>
+
+@using (Html.BeginForm("createImport", "Admin", FormMethod.Post)) 
+{
+    @Html.AntiForgeryToken()
+    
+<div class="form-horizontal">
+    <h4>Import</h4>
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="form-group">
+        <label>Loại</label>
+        <div class="col-md-10">
+            <select class="form-control" name="IdProducer">
+                @{
+                    MyWeb.Models.MYWEBEntities1 db = new MyWeb.Models.MYWEBEntities1();
+                    foreach (var producer in db.Producers.ToList())
+                    {
+                        <option value="@producer.Id">
+                            @producer.Name
+                        </option>
+                    }
+                }
+            </select>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Create" class="btn btn-default" />
+        </div>
+    </div>
+</div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>

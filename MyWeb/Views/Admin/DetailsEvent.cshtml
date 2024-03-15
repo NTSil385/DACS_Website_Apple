@@ -1,0 +1,120 @@
+﻿@model MyWeb.Models.Event
+
+@{
+    ViewBag.Title = "DetailsEvent";
+    Layout = "~/Views/Share/Admin_ayoutPage1.cshtml";
+}
+
+@section Drop {
+
+
+    <div class="dropdown" style="cursor: pointer">
+        <div class="dropdown-toggle text-danger" data-toggle="dropdown">
+            <strong>Menu</strong>
+        </div>
+        <div class="dropdown-menu">
+            <a class="dropdown-item" href="/Admin/Iphone">Iphone</a>
+            <a class="dropdown-item" href="/Admin/Imac">Imac</a>
+            <a class="dropdown-item" href="/Admin/Watch">Watch</a>
+            <a class="dropdown-item" href="/Admin/Ipad">Ipad</a>
+            <a class="dropdown-item" href="/Admin/Macbook">Macbook</a>
+            <a class="dropdown-item" href="/Admin/Another">Another</a>
+            <div class="dropdown-divider"></div>
+        </div>
+    </div>
+
+
+}
+
+
+
+
+@section Btn {}
+
+@section User {
+    <li class="nav-item" style="margin-left: 20px">
+        @{
+            var user = (MyWeb.Models.Admin)HttpContext.Current.Session["Admin"];
+            <i class="fa-solid fa-user"></i>
+            <span style="margin-left:4px"><strong>@user.FullName</strong></span>
+            <a class="dropdown-item" href="~/Home/Logout"> <strong><i class="fa-solid fa-right-from-bracket"></i></strong></a>
+
+        }
+
+    </li>
+}
+
+
+<div class="container" style="margin: 100px; display:flex; align-items:center">
+
+    <dl class="dl-horizontal">
+        <dt>
+           Tên sự kiện
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Event_Name)
+        </dd>
+
+        <dt>
+           Ngày bắt đầu
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DateStart)
+        </dd>
+
+        <dt>
+            Ngày kết thúc
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DateEnd)
+        </dd>
+
+        <dt>
+            Số lượng
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Quantity)
+        </dd>
+
+        <dt>
+            Thể thức
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Fomular)
+        </dd>
+
+        <dt>
+            Phần trăm giảm
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DisscountPercent)
+        </dd>
+
+        <dt>
+            Trạng thái
+        </dt>
+
+        <dd>
+            @{ 
+                if(Model.Status == true)
+                {
+                    <p>Đang diễn ra</p>      
+                }else
+                {
+                    <p>Sự kiện két thúc</p>
+                }
+            }
+        </dd>
+
+    </dl>
+</div>
+<div style="display:flex; justify-content: flex-start; margin: 10px 95px">
+    <a class="btn btn-outline-primary" href="~/Admin/editEvent?id=@Model.ID">Edit</a> 
+    <a class="btn btn-outline-primary" href="~/Admin/Event" style="margin-left: 30px">Home</a> 
+</div>

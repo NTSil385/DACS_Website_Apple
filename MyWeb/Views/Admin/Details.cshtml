@@ -1,0 +1,55 @@
+﻿@model MyWeb.Models.Product
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Share/Admin_ayoutPage1.cshtml";
+    MyWeb.Models.MYWEBEntities1 db = new MyWeb.Models.MYWEBEntities1();
+}
+
+@section Drop {
+
+}
+
+
+@section Btn {
+    <li class="nav-item">
+        <a class="nav-link" href="~/Admin/Create">Tạo</a>e
+    </li>
+}
+
+<h2>Detail</h2>
+<h2>@Html.DisplayNameFor(model => model.Name)</h2>
+
+<div class="container">
+    <div class="col-sm-12 col-md-12">
+        <div class="thumbnail" style="border: 1px solid #ccc; display:flex; justify-content:center; border-radius:6px">
+            <img src="~/Upload/@Html.DisplayFor(model => model.Images)" alt="hinh thumbnail" style="max-width: 100%; height: auto" />
+        </div>
+        <div class="caption" style="margin-top: 10px">
+
+            <p>
+               
+                @{
+
+                    var typa = db.Categories.Find(Model.Id_Category);
+                    if (typa != null)
+                    {
+
+                    <p><strong>Loại: </strong>@typa.Name_type</p>
+                }
+                }
+
+                </p>
+                <p><strong>  Mô tả :</strong>@Html.DisplayFor(model => model.Discription)</p>
+                <p><strong>  Giá :</strong>@Html.DisplayFor(model => model.Price)</p>
+                <p><strong>  Mã máy :</strong>@Html.DisplayFor(model => model.Producer)</p>
+
+                <p>
+                    @Html.ActionLink("Sửa", "Edit", new { id = Model.ID }) |
+                    <a href="~/Admin/Index?" class="btn btn-primary">Trở về</a>
+                </p>
+
+            </div>
+    </div>
+
+</div>

@@ -1,0 +1,161 @@
+﻿@model PagedList.IPagedList<MyWeb.Models.User>
+@using PagedList.Mvc;
+@{
+    ViewBag.Title = "List";
+    Layout = "~/Views/Share/Admin_ayoutPage1.cshtml";
+}
+
+
+@section Drop {
+}
+
+@section Btn {
+}
+
+@section User {
+    <li class="nav-item" style="margin-left: 20px">
+        @{
+            var user = (MyWeb.Models.Admin)HttpContext.Current.Session["Admin"];
+            <i class="fa-solid fa-user"></i>
+            <span style="margin-left:4px"><strong>@user.FullName</strong></span>
+            <a class="dropdown-item" href="~/Home/Logout"> <strong><i class="fa-solid fa-right-from-bracket"></i></strong></a>
+
+        }
+
+    </li>
+}
+<h2>List</h2>
+<div class="container" style="margin:110px auto">
+    <div class="row">
+        @using (Html.BeginForm("List", "Admin", FormMethod.Get))
+        {
+            <div class="form-group form-inline">
+                <div class="items" style="display: inline-flex; align-items:center">
+                    @Html.TextBox("searchString", ViewBag.CurrentFilter as string, new { @class = "form-control" })
+                    <input type="submit" class="btn btn-primary" value="Search" style="margin: 0 5px" />
+                </div>
+                <style>
+                    .form-control {
+                        width: 200px;
+                        height: 40px;
+                        margin-left: 18px;
+                    }
+                </style>
+            </div>
+        }
+    </div>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    Họ tên
+                </th>
+                <th>
+                    Số điện thoại
+                </th>
+                <th>
+                    Email
+                </th>
+                <th>
+                    Địa chỉ
+                </th>
+                <th>
+                    Giới tính
+                </th>
+                <th>
+                    Ngày sinh
+                </th>
+                <th>
+                    Tên đăng nhập
+                </th>
+                <th>
+                    Mật khẩu
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.FullName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.PhoneNumber)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Email)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Address)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Sex)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Birthday)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.username)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.password)
+                    </td>
+                    <td style="display: flex; align-items:center">
+                        @Html.ActionLink("Sửa", "Update", new { id = item.ID }) 
+                        <a class="btn btn-outline-danger" style="margin: 0px 6px" href="~/Admin/DeleteUser?id=@item.ID">Xóa</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+
+
+
+    </table>
+    <div>
+        Trang @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) / @Model.PageCount
+    </div>
+    <div class="">
+        @Html.PagedListPager(Model, page => Url.Action("Index", new { page, currentFilter = ViewBag.CurrentFilter }))
+        <style>
+            .pagination-container {
+            }
+
+            .pagination {
+                display: flex;
+            }
+
+            ul {
+                align-items: center;
+            }
+
+            li {
+                margin: 0 5px;
+            }
+
+            .active {
+                display: flex;
+                border: 1px solid #ff7956;
+                color: #fff;
+                border-radius: 6px;
+                width: 50px;
+                height: 35px;
+                background-color: #ff7956;
+                align-items: center;
+                text-align: center;
+                justify-content: center;
+            }
+
+                .active:hover {
+                    color: #ff7956;
+                    border: 1px solid #ff7956;
+                    background-color: aliceblue;
+                    cursor: pointer
+                }
+        </style>
+    </div>
+
+
+</div>

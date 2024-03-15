@@ -1,0 +1,133 @@
+﻿@model PagedList.IPagedList<MyWeb.Models.Contact>
+@using PagedList.Mvc;
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Share/Admin_ayoutPage1.cshtml";
+    MyWeb.Models.MYWEBEntities1 db = new MyWeb.Models.MYWEBEntities1();
+
+}
+
+
+@section Drop {
+}
+
+
+
+
+@section Btn {
+
+}
+
+@section User {
+    <li class="nav-item" style="margin-left: 20px">
+        @{
+            var user = (MyWeb.Models.Admin)HttpContext.Current.Session["Admin"];
+            <i class="fa-solid fa-user"></i>
+            <span style="margin-left:4px"><strong>@user.FullName</strong></span>
+            <a class="dropdown-item" href="~/Home/Logout"> <strong><i class="fa-solid fa-right-from-bracket"></i></strong></a>
+
+        }
+
+    </li>
+}
+
+<div class="container-item" style="margin: 110px">
+    <div class="row">
+        @using (Html.BeginForm("Index", "Admin", FormMethod.Get))
+        {
+            <div class="form-group form-inline">
+                <div class="items" style="display: inline-flex; align-items:center">
+                    @Html.TextBox("searchString", ViewBag.CurrentFilter as string, new { @class = "form-control" })
+                    <input type="submit" class="btn btn-primary" value="Search" style="margin: 0 5px" />
+                </div>
+                <style>
+                    .form-control {
+                        width: 200px;
+                        height: 40px;
+                        margin-left: 18px;
+                    }
+                </style>
+            </div>
+        }
+    </div>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    <strong>Email</strong>
+                </th>
+                <th>
+                    <strong>Phone</strong>
+                </th>
+                <th>
+
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @item.Email
+                    </td>
+                    <td>
+                        @item.PhoneNumber
+                    </td>
+                    <td>
+                        @Html.ActionLink("Details", "DetailsContact", new { id = item.ID }) |
+                        @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+                    </td>
+                </tr>
+            }
+
+        </tbody>
+
+
+    </table>
+    <div>
+        Trang @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) / @Model.PageCount
+    </div>
+    <div class="">
+        @Html.PagedListPager(Model, page => Url.Action("Index", new { page, currentFilter = ViewBag.CurrentFilter }))
+        <style>
+            .pagination-container {
+            }
+
+            .pagination {
+                display: flex;
+            }
+
+            ul {
+                align-items: center;
+            }
+
+            li {
+                margin: 0 5px;
+            }
+
+            .active {
+                display: flex;
+                border: 1px solid #ff7956;
+                color: #fff;
+                border-radius: 6px;
+                width: 50px;
+                height: 35px;
+                background-color: #ff7956;
+                align-items: center;
+                text-align: center;
+                justify-content: center;
+            }
+
+                .active:hover {
+                    color: #ff7956;
+                    border: 1px solid #ff7956;
+                    background-color: aliceblue;
+                    cursor: pointer
+                }
+        </style>
+    </div>
+</div>

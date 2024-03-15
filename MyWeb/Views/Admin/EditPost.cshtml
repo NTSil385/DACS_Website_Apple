@@ -1,0 +1,110 @@
+﻿-@model MyWeb.Models.Post
+
+@{
+    ViewBag.Title = "EditPost";
+    Layout = "~/Views/Share/Admin_ayoutPage1.cshtml";
+    MyWeb.Models.MYWEBEntities1 db = new MyWeb.Models.MYWEBEntities1();
+}
+@section Drop {
+}
+
+
+@section Btn {
+}
+
+@section User {
+}
+
+<h2>EditPost</h2>
+
+<div class="container" style="margin:100px auto">
+    <form action="/Admin/EditPost" method="post" enctype="multipart/form-data">
+
+        @Html.AntiForgeryToken()
+
+        <div class="form-horizontal">
+            <h4>Sửa tin tức</h4>
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            @Html.HiddenFor(model => model.PostID)
+
+            <div class="form-group">
+                <p>Chọn danh mục</p>
+                <div class="col-md-10">
+                    <select class="form-control" name="ID_postcategory">
+                        @foreach (var typa in db.PostCategories.ToList())
+                        {
+                            <option value="@typa.ID" @Html.Raw(typa.ID == Model.ID_postcategory ? "selected" : "")>
+                                @typa.Name_type
+                            </option>
+                        }
+                    </select>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            <label>Tiêu đề</label>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Title, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label>Mô tả</label>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label>Link dẫn</label>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.URL, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.URL, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label>Người đăng</label>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Author, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Author, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label>Ngày tạo</label>
+            <div class="col-md-10">
+                <input type="date" placeholder="DateCreated" class="form-control" name="DateCreated" value="" />
+                @Html.ValidationMessageFor(model => model.DateCreated, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label style="margin-top:4px"><strong>Chọn Hình</strong></label>
+            <div class="col-md-10">
+
+                <input type="file" class="form-group" id="uploadFile" name="uploadFile" accept="image/*" style="margin: 4px" />
+                @Html.EditorFor(model => model.images, new { htmlAttributes = new { @class = "form-control", disabled = "disabled", @readonly = "readonly" } } )
+                @Html.ValidationMessageFor(model => model.images, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Lưu" class="btn btn-default" />
+            </div>
+        </div>
+
+
+        <div>
+            @Html.ActionLink("Trờ về", "Index")
+        </div>
+
+    </form>
+</div>

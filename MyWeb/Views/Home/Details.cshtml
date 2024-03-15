@@ -1,0 +1,31 @@
+﻿@model MyWeb.Models.Product
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Share/Using_LayoutPage1.cshtml";
+    MyWeb.Models.MYWEBEntities1 db = new MyWeb.Models.MYWEBEntities1();
+}
+
+<div class="header-details" style="text-align:center; color: #000; margin: 10px; font-size: 30px">
+    <div><strong>@Html.DisplayFor(model => model.Name)</strong></div>
+
+</div>
+
+
+<div class="container">
+    <div class="col-sm-12 col-md-12">
+        <div class="thumbnail" style="border: 1px solid #ccc; display:flex; justify-content:center; border-radius:6px">
+            <img src="~/Upload/@Html.DisplayFor(model => model.Images)" alt="hinh thumbnail" style="max-width: 100%; height: auto" />
+        </div>
+        <div class="caption" style="margin-top: 10px">
+
+                <p><strong>  Caption:</strong> @Html.DisplayFor(model => model.Discription)</p>
+
+                <p>
+                    <a href="~/Home/Shopping?" class="btn btn-primary">Back to list</a>
+                </p>
+
+            </div>
+        </div>
+
+    </div>

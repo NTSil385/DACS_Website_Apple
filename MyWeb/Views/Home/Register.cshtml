@@ -1,0 +1,42 @@
+﻿@model MyWeb.Models.User
+
+<!doctype html>
+<html lang="en">
+<head>
+    <link rel="icon" href="~/assets/imgs/logo1.jpg">
+    <title>Đăng ký</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="~/assets/css/reg.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Work+Sans&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="login-box">
+        <div class="form">
+            <form class="login-form" method="post" id="form-1">
+                <div class="form-group">
+                    <input type="text" placeholder="UserName" class="form-control" name="username" value="" required />
+                    <span class="form-message"></span>
+                </div>
+                <input type="password" autocomplete="current-password" minlength="4" maxlength="8" size="8" placeholder="Password" class="form-control" name="password" value="" required />
+                <input type="email" size="64" maxlength="64" placeholder="Email" class="form-control" name="Email" value="" required />
+                <input type="tel" minlength="10" maxlength="11" size="11" placeholder="PhoneNumber" class="form-control" name="PhoneNumber" value="" required />
+                <input type="text" placeholder="FullName" class="form-control" name="FullName" value="" required />
+                <input type="date" placeholder="Birthday" class="form-control" name="Birthday" value="" required />
+                <input type="text" placeholder="Sex" class="form-control" name="Sex" value="" required />
+                <input type="text" placeholder="Address" class="form-control" name="Address" value="" required />
+                <div class="form-group">
+                    <p class="text-danger" style="color: red; font-weight: 800; font-family: 'Press Start 2P' , cursive; font-family: 'Work Sans' , sans-serif;">
+                        @TempData["error"]
+                    </p>
+
+                </div>
+                <button type="submit" value="Register" style="font-weight: 500; font-family: 'Press Start 2P', cursive; font-family: 'Work Sans', sans-serif;">Đăng ký</button>
+
+            </form>
+        </div>
+    </div>
+</body>
+</html>

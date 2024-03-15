@@ -1,0 +1,100 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+    <link rel="icon" href="~/assets/imgs/logo1.jpg">
+    <title>Đăng nhập</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="~/assets/css/loginform.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Work+Sans&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="login-box">
+        <div class="form">
+            <form class="login-form" method="post">
+                <input type="text" placeholder="Tên tài khoản" name="username" />
+                <input type="password" autocomplete="current-password"  minlength="4" maxlength="8" size="8"  placeholder="Mật khẩu" name="password" />
+                <div class="form-group">
+                    <p class="text-danger" style="color: red; font-weight: 800; font-family: 'Press Start 2P', cursive; font-family: 'Work Sans', sans-serif;">
+                        @TempData["error"]
+                    </p>
+
+                </div>
+                <button type="submit">Đăng nhập</button>
+                @*đăng nhập fb*@
+
+
+
+
+                <p class="message" style="font-weight: 500; font-family: 'Press Start 2P', cursive; font-family: 'Work Sans', sans-serif;">Bạn chưa có tài khoản? <a href="~/Home/Register" style="font-weight: 500; font-family: 'Press Start 2P', cursive; font-family: 'Work Sans', sans-serif;">Tạo tài khoản mới</a></p>
+                <p class="message" style="font-weight: 500; font-family: 'Press Start 2P', cursive; font-family: 'Work Sans', sans-serif;">Nếu như bạn quên mật khẩu? <a href="~/Home/ForgotPassword" style="font-weight: 500; font-family: 'Press Start 2P', cursive; font-family: 'Work Sans', sans-serif;">Nhấn vào đây!</a></p>
+
+                <button class="cssbuttons-io-button" style="font-weight: 500; font-family: 'Press Start 2P', cursive; font-family: 'Work Sans', sans-serif;">
+                    Đăng nhập với Facebook
+                    <a href="~/Home/LoginFacebook" class="icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path fill="none" d="M0 0h24v24H0z"></path><path fill="currentColor" d="M16.172 11l-5.364-5.364 1.414-1.414L20 12l-7.778 7.778-1.414-1.414L16.172 13H4v-2z"></path></svg>
+                    </a>
+                </button>
+                <style>
+                    .cssbuttons-io-button {
+                        margin: 10px 0px;
+                        background: #A370F0;
+                        color: white;
+                        font-family: inherit;
+                        padding: 0.35em;
+                        padding-left: 1.2em;
+                        font-size: 17px;
+                        font-weight: 500;
+                        border-radius: 0.9em;
+                        border: none;
+                        letter-spacing: 0.05em;
+                        display: flex;
+                        align-items: center;
+                        box-shadow: inset 0 0 1.6em -0.6em #714da6;
+                        overflow: hidden;
+                        position: relative;
+                        height: 2.8em;
+                        padding-right: 3.3em;
+                    }
+
+                        .cssbuttons-io-button .icon {
+                            background: white;
+                            margin-left: 1em;
+                            position: absolute;
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            height: 2.2em;
+                            width: 2.2em;
+                            border-radius: 0.7em;
+                            box-shadow: 0.1em 0.1em 0.6em 0.2em #7b52b9;
+                            right: 0.3em;
+                            transition: all 0.3s;
+                        }
+
+                        .cssbuttons-io-button:hover .icon {
+                            width: calc(100% - 0.6em);
+                        }
+
+                        .cssbuttons-io-button .icon svg {
+                            width: 1.1em;
+                            transition: transform 0.3s;
+                            color: #7b52b9;
+                        }
+
+                        .cssbuttons-io-button:hover .icon svg {
+                            transform: translateX(0.1em);
+                        }
+
+                        .cssbuttons-io-button:active .icon {
+                            transform: scale(0.95);
+                        }
+                </style>
+
+            </form>
+        </div>
+    </div>
+</body>
+</html>

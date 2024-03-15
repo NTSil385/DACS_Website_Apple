@@ -1,0 +1,309 @@
+﻿@{
+    Layout = "~/Views/Share/Using_LayoutPage1.cshtml";
+    ViewBag.Title = "Home Page";
+}
+
+@section User {
+    <li class="nav-item" style="margin-left: 20px">
+        @{
+            var user = (MyWeb.Models.User)HttpContext.Current.Session["username"];
+            <a href="~/Home/Info?id=@user.ID" class="btn btn-outline-info">
+                <span style="margin-left:4px; color: black; "><strong>@user.FullName</strong></span>
+            </a>
+            <a class="dropdown-item" href="~/Home/Logout">
+                <strong><i class="fa-solid fa-right-from-bracket" style="color: black; float:right"></i></strong>
+            </a>
+        }
+    </li>
+}
+
+<!-- banner section start -->
+<div class="banner_section banner_bg">
+    <div class="container-fluid">
+        <div id="my_slider" class="carousel slide" data-ride="carousel">
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <div class="taital_main">
+                        <div class="taital_left">
+                            <h1 class="banner_taital">Product For Apple</h1>
+                            <div class="read_bt"><a href="#">Read More</a></div>
+                        </div>
+                        <div class="taital_right">
+                            <div class="product_img">
+                                <img src="~/images/banner3.jpg   " style="border-radius: 6px" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <div class="taital_main">
+                        <div class="taital_left">
+                            <h1 class="banner_taital">Product For Apple</h1>
+                            <div class="read_bt"><a href="#">Read More</a></div>
+                        </div>
+                        <div class="taital_right">
+                            <div class="product_img">
+                                <img src="~/images/product1-img2.png" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <div class="taital_main">
+                        <div class="taital_left">
+                            <h1 class="banner_taital">Hihi Product For Apple</h1>
+                            <div class="read_bt"><a href="#">Read More</a></div>
+                        </div>
+                        <div class="taital_right">
+                            <div class="product_img">
+                                <iframe width="1045"
+                                        height="588"
+                                        src="https://www.youtube.com/embed/ehbmC1irQuY?loop=1&autoplay=1&mute=1&playlist=ehbmC1irQuY"
+                                        title="iPhone 14 &amp; iPhone 14 Plus | Big and Bigger | Apple"
+                                        frameborder="0"
+                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                        allowfullscreen></iframe>
+                                <style>
+                                    iframe {
+                                        border-radius: 6px;
+                                    }
+                                </style>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <a class="carousel-control-prev"
+               href="#my_slider"
+               role="button"
+               data-slide="prev">
+                <i class="fa fa-arrow-up"></i>
+            </a>
+            <a class="carousel-control-next"
+               href="#my_slider"
+               role="button"
+               data-slide="next">
+                <i class="fa fa-arrow-down"></i>
+            </a>
+        </div>
+    </div>
+</div>
+<!-- banner section end -->
+<!-- about section start -->
+<div class="about_section layout_padding">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <div><img src="~/images/about-img.png" class="about_img" /></div>
+            </div>
+            <div class="col-md-6">
+                <h1 class="about_taital" style="font-family: 'Mukta', sans-serif; font-family: 'Press Start 2P', cursive; font-family: 'Work Sans', sans-serif;">Giới thiệu về Apple</h1>
+                <div class="border"></div>
+                <p class="about_text">
+                    Khi bạn mua sắm với Apple, chúng tôi sẽ giúp bạn khai thác tối đa thiết bị mới của mình.
+                    Điều chỉnh phiên của bạn xung quanh những gì bạn muốn khám phá và nhận câu trả lời
+                    cho bất kỳ câu hỏi nào bạn có thể có.
+                </p>
+                <div class="read_bt_1"><a href="~/Home/About">Đọc thêm</a></div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- about section end -->
+<!-- product section start -->
+<div class="product_section layout_padding">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h1 class="product_taital" style="font-family: 'Mukta', sans-serif; font-family: 'Press Start 2P', cursive; font-family: 'Work Sans', sans-serif;">Sản phẩm</h1>
+
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="owl-carousel owl-theme">
+                    <div class="item">
+                        <a class="nav-link" href="~/Home/Watch">
+
+                            <div class="image_main mains">
+                                <img src="~/images/items1.jpg" alt="image" />
+                            </div>
+                            <h6 class="price_text">Apple Watch <br /></h6>
+                        </a>
+                    </div>
+                    <div class="item">
+                        <a class="nav-link" href="~/Home/Ipad">
+
+                            <div class="image_main mains">
+                                <img src="~/images/ipad.png" alt="image" />
+                            </div>
+                            <h6 class="price_text">IPad<br /></h6>
+                        </a>
+                    </div>
+                    <div class="item">
+                        <a class="nav-link" href="~/Home/Macbook">
+
+                            <div class="image_main mains">
+                                <img src="~/images/mac.png" alt="image" />
+                            </div>
+                            <h6 class="price_text">Macbook <br /></h6>
+                        </a>
+                    </div>
+                    <div class="item">
+                        <a class="nav-link" href="~/Home/Iphone">
+                            <div class="image_main mains">
+                                <img src="~/images/items4.png" alt="image" />
+                            </div>
+                            <h6 class="price_text">IPhone <br /></h6>
+                        </a>
+
+                    </div>
+
+                    <div class="item">
+                        <a class="nav-link" href="~/Home/Imac">
+                            <div class="image_main mains">
+                                <img src="~/images/items5.jpg" alt="image" />
+                            </div>
+                            <h6 class="price_text">Imac <br /></h6>
+                        </a>
+
+                    </div>
+
+                    <div class="item">
+                        <a class="nav-link" href="~/Home/Another">
+
+                            <div class="image_main anothers">
+                                <img src="~/images/another3.png" alt="image" />
+                            </div>
+                            <h6 class="price_text">Another <br /></h6>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- product section start -->
+<!-- client section start -->
+<div class="client_section layout_padding banner_bg">
+    <div class="container">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Work+Sans&display=swap" rel="stylesheet">
+        <div class="row">
+            <div class="col-md-3">
+                <div id="demo" class="datecount"></div>
+                <style>
+                    .datecount {
+                        font-family: 'Press Start 2P', cursive;
+                        font-family: 'Work Sans', sans-serif;
+                        font-size: 50px;
+                        font-weight: 800;
+                        color: white;
+                    }
+                </style>
+            </div>
+            <div class="col-md-9">
+                <div class="client_box">
+                    <div class="container">
+
+                        @if (ViewBag.Status == false)
+                        {
+                            <label>Su kien chua dien ra</label>
+                        }
+                        else
+                        {
+
+                            <div class="title"><strong>@ViewBag.Event.Event_Name</strong></div>
+                            <h3>@ViewBag.Event.Fomular</h3>
+                            <h3><strong>Số lượng còn: </strong>@ViewBag.Event.Quantity</h3>
+                        }
+                    </div>
+
+                </div>
+               
+            </div>
+        </div>
+    </div>
+</div>
+<!-- client section end -->
+<!-- Blog section start -->
+<div class="blog_section layout_padding">
+    <div class="container">
+        <h1 class="blog_taital" style="font-family: 'Mukta', sans-serif; font-family: 'Press Start 2P', cursive; font-family: 'Work Sans', sans-serif;">Tin tức</h1>
+        <div class="blog_section_2">
+            <div class="row">
+                <div class="col-md-5">
+                    <div class="face_img">
+                        <img src="~/images/06.jpg" class="face_img" />
+                    </div>
+                </div>
+                <div class="col-md-7">
+                    <h1 class="face_text">WWDC23</h1>
+                    <p class="lorem_text">
+                        Nhanh chóng phát triển.
+                        Đánh dấu lịch của bạn cho một tuần thú vị của công nghệ và cộng đồng. 
+                        Hãy là một trong những người đầu tiên tìm hiểu mới nhất về các nền tảng, 
+                        công nghệ và công cụ của Apple. Bạn cũng sẽ có cơ hội tham gia
+                        với các chuyên gia của Apple và các nhà phát triển khác. Tất cả đều trực tuyến và miễn phí.
+                    </p>
+                    <div class="read_bt_1"><a href="https://developer.apple.com/wwdc23/">Đọc thêm</a></div>
+                </div>
+            </div>
+        </div>
+        <div class="blog_section_3">
+            <div class="row">
+                <div class="col-md-7">
+                    <h1 class="face_text">
+                        Sử dụng AR để xem MacBook Air trong không gian làm việc của bạn.
+                    </h1>
+                    <p class="lorem_text">
+                        Cuốn sổ tay do-it-all có được bộ nhớ không thể tin được. 
+                        Chip M1 mang đến 16GB bộ nhớ hợp nhất siêu nhanh.
+                        Nhóm bộ nhớ băng thông cao, độ trễ thấp này cho phép các ứng dụng chia sẻ dữ liệu giữa CPU,
+                        GPU và Neural Engine một cách hiệu quả — vì vậy mọi thứ bạn làm đều nhanh và mượt mà.
+                    </p>
+                    <div class="readmore_bt"><a href="https://www.apple.com/">Đọc thêm</a></div>
+                </div>
+                <div class="col-md-5">
+                    <div class="face_img">
+                        <img src="~/images/arx.jpg" class="face_imgx" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Blog section end -->
+<!-- contact section start -->
+<!-- contact section end -->
+<script>
+  // Thiết lập thời gian đích mà ta sẽ đếm
+  var countDownDate = new Date("@ViewBag.dateEnd").getTime();
+
+  // cập nhập thời gian sau mỗi 1 giây
+  var x = setInterval(function() {
+
+    // Lấy thời gian hiện tại
+    var now = new Date().getTime();
+
+    // Lấy số thời gian chênh lệch
+    var distance = countDownDate - now;
+
+    // Tính toán số ngày, giờ, phút, giây từ thời gian chênh lệch
+    var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+    var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+    // HIển thị chuỗi thời gian trong thẻ p
+    document.getElementById("demo").innerHTML = days + "Ngày " + hours + "Giờ "
+    + minutes + "Phút " + seconds + "Giây ";
+
+    // Nếu thời gian kết thúc, hiển thị chuỗi thông báo
+    if (distance < 0) {
+      clearInterval(x);
+      document.getElementById("demo").innerHTML = "Thời gian đếm ngược đã kết thúc";
+    }
+  }, 1000);
+</script>

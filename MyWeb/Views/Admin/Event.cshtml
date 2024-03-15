@@ -1,0 +1,183 @@
+﻿@model PagedList.IPagedList<MyWeb.Models.Event>
+@using PagedList.Mvc;
+@{
+    ViewBag.Title = "Event";
+    Layout = "~/Views/Share/Admin_ayoutPage1.cshtml";
+}
+@section Drop {
+
+
+    <div class="dropdown" style="cursor: pointer">
+        <div class="dropdown-toggle text-danger" data-toggle="dropdown">
+            <strong>Menu</strong>
+        </div>
+        <div class="dropdown-menu">
+            <a class="dropdown-item" href="/Admin/Iphone">Iphone</a>
+            <a class="dropdown-item" href="/Admin/Imac">Imac</a>
+            <a class="dropdown-item" href="/Admin/Watch">Watch</a>
+            <a class="dropdown-item" href="/Admin/Ipad">Ipad</a>
+            <a class="dropdown-item" href="/Admin/Macbook">Macbook</a>
+            <a class="dropdown-item" href="/Admin/Another">Another</a>
+            <div class="dropdown-divider"></div>
+        </div>
+    </div>
+
+
+}
+
+
+@section Btn {}
+
+@section User {
+    <li class="nav-item" style="margin-left: 20px">
+        @{
+            var user = (MyWeb.Models.Admin)HttpContext.Current.Session["Admin"];
+            <i class="fa-solid fa-user"></i>
+            <span style="margin-left:4px"><strong>@user.FullName</strong></span>
+            <a class="dropdown-item" href="~/Home/Logout"> <strong><i class="fa-solid fa-right-from-bracket"></i></strong></a>
+
+        }
+
+    </li>
+}
+
+<h2>Event</h2>
+
+<div class="container" style="margin: 110px auto">
+    <div class="row">
+        @using (Html.BeginForm("Event", "Admin", FormMethod.Get))
+        {
+            <div class="form-group form-inline">
+                <div class="items" style="display: inline-flex; align-items:center">
+                    @Html.TextBox("searchString", ViewBag.CurrentFilter as string, new { @class = "form-control" })
+                    <input type="submit" class="btn btn-primary" value="Search" style="margin: 0 5px" />
+                </div>
+                <style>
+                    .form-control {
+                        width: 200px;
+                        height: 40px;
+                        margin-left: 18px;
+                    }
+                </style>
+            </div>
+        }
+    </div>
+    <h2>Event</h2>
+
+
+    <p>
+        @Html.ActionLink("Tạo mới sự kiện", "createEvent")
+    </p>
+    <table class="table">
+        <tr>
+            <th>
+                Tên sự kiện
+            </th>
+            <th>
+                Ngày bắt đầu
+            </th>
+            <th>
+                Ngày kết thúc
+            </th>
+            <th>
+                Số Lượng
+            </th>
+            <th>
+                Trạng thái
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Event_Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DateStart)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DateEnd)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Quantity)
+                </td>
+                <td>
+                   
+                    @{ 
+                        if (item.Status == true)
+                        {
+                            <p>Đang diễn ra</p>
+                        } else
+                        {
+                            <p>Đã kết thúc</p>
+                        }
+                    }
+                </td>
+                <td>
+                   
+                    @{
+                        if (item.Status == true)
+                        {
+                            <a class="btn btn-outline-primary" href="@Url.Action("PauseEvent", "Admin", new { id = item.ID,
+                                                            @strURL = Request.Url.ToString() })">Pause</a>
+                        }
+                        else
+                        {
+                            <a class="btn btn-outline-primary" href="@Url.Action("StartEvent", "Admin", new { id = item.ID,
+                                                            @strURL = Request.Url.ToString() })">Start</a>
+                        }
+                    }|
+                    @Html.ActionLink("Sửa", "editEvent", new { id = item.ID }) |
+                    @Html.ActionLink("Chi tiết", "DetailsEvent", new { id = item.ID }) |
+                    @Html.ActionLink("Xóa", "deleteEvent", new { id = item.ID })
+                </td>
+            </tr>
+        }
+
+    </table>
+    <div>
+        Trang @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) / @Model.PageCount
+    </div>
+    <div class="">
+        @Html.PagedListPager(Model, page => Url.Action("Event",
+          new { page }))
+        <style>
+            .pagination-container {
+            }
+
+            .pagination {
+                display: flex;
+            }
+
+            ul {
+                align-items: center;
+            }
+
+            li {
+                margin: 0 5px;
+            }
+
+            .active {
+                display: flex;
+                border: 1px solid #ff7956;
+                color: #fff;
+                border-radius: 6px;
+                width: 50px;
+                height: 35px;
+                background-color: #ff7956;
+                align-items: center;
+                text-align: center;
+                justify-content: center;
+            }
+
+                .active:hover {
+                    color: #ff7956;
+                    border: 1px solid #ff7956;
+                    background-color: aliceblue;
+                    cursor: pointer
+                }
+        </style>
+    </div>
+</div>

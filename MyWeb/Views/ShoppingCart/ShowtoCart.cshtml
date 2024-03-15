@@ -1,0 +1,83 @@
+﻿@model MyWeb.Models.Cart
+
+@{
+    ViewBag.Title = "ShowtoCart";
+    Layout = "~/Views/Share/Using_LayoutPage1.cshtml";
+}
+
+@section User {
+    <li class="nav-item" style="margin-left: 20px">
+        @{
+            var user = (MyWeb.Models.User)HttpContext.Current.Session["username"];
+            <i class="fa-solid fa-user"></i>
+            <span style="margin-left:4px; color: black; "><strong>@user.FullName</strong></span>
+            <a class="dropdown-item" href="~/Home/Logout">
+                <strong><i class="fa-solid fa-right-from-bracket" style="color: black; float:right"></i></strong>
+            </a>
+
+        }
+
+    </li>
+}
+
+<div class="container" style="margin:70px auto">
+    <a href="~/Home/Shopping?" class="btn btn-primary">Back to list</a>
+
+    <div class="title" style="font-size: 30px; font-weight:500; text-align:center; margin-bottom:10px">ShowtoCart</div>
+    @if (Model != null)
+    {
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Product Name</th>
+                    <th>Image</th>
+                    <th>Price</th>
+                    <th>Quantity</th>
+                    <th>Total</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.Items)
+                {
+                    double total = Convert.ToDouble(item._shopping_product.Price.Value * item._shopping_quantity);
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(model => item._shopping_product.Name)
+                        </td>
+                        <td>
+                            <img src="~/Upload/@item._shopping_product.Images" alt="hinh thumnail" class="img-responsive" style="width:100px; height: 100px" />
+                        </td>
+                        <td>
+                            @string.Format("{0:#,0}", item._shopping_product.Price)
+                        </td>
+                        <td>
+                            @using (Html.BeginForm("Update_quantity_Cart", "ShoppingCart"))
+                            {
+                                <input type="hidden" value="@item._shopping_product.ID" name="ID_Product" />
+                                <input type="number" value="@item._shopping_quantity" name="quantity" style="width:50px" />
+                                <input type="submit" value="Update" class="btn btn-outline-primary" />
+                            }
+
+                        </td>
+                        <td>
+                            Total: @string.Format("{0:#,0}", total)
+                        </td>
+                        <td>
+                            <a class="btn btn-outline-danger" href="~/ShoppingCart/Remove_Item/@item._shopping_product.ID">Remove</a>
+                        </td>
+                    </tr>
+
+                }
+            </tbody>
+            <div style="float:right;font-size:20px; font-weight:500">Tổng Tiền: @string.Format("{0:#,0}", Model.Total_Money())</div>
+
+            <tfoot>
+
+            </tfoot>
+        </table>
+        
+        <a href="~/ShoppingCart/Cash" class="btn btn-outline-success" style="margin-top: 10px">Thanh toán </a>
+        <a href="~/ShoppingCart/VNpay" class="btn btn-outline-success" style="margin-top: 10px">Thanh toán online</a>
+
+    }
+</div>

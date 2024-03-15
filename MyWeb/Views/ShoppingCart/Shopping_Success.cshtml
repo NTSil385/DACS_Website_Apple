@@ -1,0 +1,42 @@
+﻿
+@{
+    ViewBag.Title = "Shopping_Success";
+    Layout = "~/Views/Share/Using_LayoutPage1.cshtml";
+}
+
+
+@section User {
+    <li class="nav-item" style="margin-left: 20px">
+        @{
+            var user = (MyWeb.Models.User)HttpContext.Current.Session["username"];
+            <i class="fa-solid fa-user"></i>
+            <span style="margin-left:4px; color: black; "><strong>@user.FullName</strong></span>
+            <a class="dropdown-item" href="~/Home/Logout">
+                <strong><i class="fa-solid fa-right-from-bracket" style="color: black; float:right"></i></strong>
+            </a>
+
+        }
+
+    </li>
+}
+
+
+<body>
+    <div class="container">
+        <div class="row" style="margin: 0 auto">
+            <div class="box" style=" position:relative; width:100%; display: flex; justify-content: space-between">
+                <script>
+                    alert("Đơn hàng đặt thành công!")
+                </script>
+                <a href="@Url.Action("Index","Home")" class="btn btn-outline-secondary" style="margin-bottom:50px">Back to Home...</a>
+                <a href="@Url.Action("showAllBill","Home")" class="btn btn-outline-secondary" style="margin-bottom:50px">Show All Bill...</a>
+            </div>
+            <div class="col-10">
+
+
+                <div class="img-responsive" style="display: flex"><img src="~/images/ship.gif" alt="hinh thumnail" class="img-responsive" style="max-width:100%;width:44%; height:auto; margin: 4px auto; border-radius:8px" /></div>
+            </div>
+        </div>
+    </div>
+   
+</body>

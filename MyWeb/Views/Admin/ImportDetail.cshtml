@@ -1,0 +1,67 @@
+﻿@model IEnumerable<MyWeb.Models.Imprt_Details>
+
+@{
+    ViewBag.Title = "ImportDetail";
+    Layout = "~/Views/Share/Admin_ayoutPage1.cshtml";
+}
+
+
+
+@section Drop {
+
+    <div class="dropdown" style="cursor: pointer">
+        <div class="dropdown-toggle text-danger" data-toggle="dropdown">
+            <strong>Menu</strong>
+        </div>
+        <div class="dropdown-menu">
+            <a class="dropdown-item" href="/Admin/Iphone">Iphone</a>
+            <a class="dropdown-item" href="/Admin/Imac">Imac</a>
+            <a class="dropdown-item" href="/Admin/Watch">Watch</a>
+            <a class="dropdown-item" href="/Admin/Ipad">Ipad</a>
+            <a class="dropdown-item" href="/Admin/Macbook">Macbook</a>
+            <a class="dropdown-item" href="/Admin/Another">Another</a>
+            <div class="dropdown-divider"></div>
+        </div>
+    </div>
+
+
+}
+
+
+
+
+@section Btn {
+    <li class="nav-item">
+        <a class="nav-link" href="~/Admin/Create">Tạo</a>
+    </li>
+}
+
+@section User {
+    <li class="nav-item" style="margin-left: 20px">
+        @{
+            var user = (MyWeb.Models.Admin)HttpContext.Current.Session["Admin"];
+            <i class="fa-solid fa-user"></i>
+            <span style="margin-left:4px"><strong>@user.FullName</strong></span>
+            <a class="dropdown-item" href="~/Home/Logout"> <strong><i class="fa-solid fa-right-from-bracket"></i></strong></a>
+
+        }
+
+    </li>
+}
+
+
+
+<h2>ImportDetail</h2>
+
+
+<div class="container" style="margin:330px">
+
+    @foreach (var item in Model)
+    {
+        <p>
+            <a class="btn btn-outline-info" href="~/Admin/createImportDetail?id=@item">content</a>
+        </p>
+    }
+
+</div>
+

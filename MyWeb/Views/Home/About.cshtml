@@ -1,0 +1,235 @@
+﻿
+@{
+    ViewBag.Title = "Giới thiệu";
+    Layout = "~/Views/Share/Using_LayoutPage1.cshtml";
+}
+
+
+@section User {
+    <li class="nav-item" style="margin-left: 20px">
+        @{
+            var user = (MyWeb.Models.User)HttpContext.Current.Session["username"];
+            <a href="~/Home/Info?id=@user.ID" class="btn btn-outline-info">
+                <span style="margin-left:4px; color: black; "><strong>@user.FullName</strong></span>
+            </a>
+            <a class="dropdown-item" href="~/Home/Logout">
+                <strong><i class="fa-solid fa-right-from-bracket" style="color: black; float:right"></i></strong>
+            </a>
+        }
+    </li>
+}
+
+
+<div class="container"
+     style="
+    margin: 110px auto;
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+  ">
+    <div class="body-content" style="margin: 0 auto">
+        <div class="row" style="display: flex; justify-content: center">
+            <div class="panel panel-default"
+                 style="width: 70%; height: auto; justify-self: center">
+                <div class="item" style="padding: 10px; text-align: center">
+                    <div class="panel-heading"
+                         style="display: flex; justify-content: center">
+                        <h1 style="font-size: 60px; margin-bottom: 30px">
+                            Phiên cá nhân trực tuyến
+                        </h1>
+                    </div>
+                    <div class="panel-body">
+                        <h3>
+                            Lên lịch một phiên miễn phí với Chuyên gia và bao gồm các chủ đề bạn muốn - từ những điều cơ bản đến các mẹo chuyên nghiệp.
+                        </h3>
+
+                        <p class="text-content" style="margin-top: 20px">
+                            Khi bạn mua sắm với Apple, chúng tôi sẽ giúp bạn khai thác tối đa thiết bị mới của mình. Điều chỉnh phiên của bạn xung quanh những gì bạn muốn khám phá và nhận câu trả lời cho bất kỳ câu hỏi nào bạn có thể có.
+                        </p>
+                    </div>
+                    <div class="panel-footer clearfix"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row" style="width: 100%; height: auto; margin: 70px auto">
+            <img src="~/Upload/imgw.png"
+                 alt="hinh"
+                 style="width: 100%; height: auto; border-radius: 6px" />
+        </div>
+
+        <div class="row"
+             style="width: 100%; height: auto; display: flex; justify-content: center">
+            <div class="border-body"
+                 style="display: flex; width: 100%; justify-content: space-evenly">
+                <div class="col-lg-4 col-md-4 col-xs-12"
+                     style="max-width: 100%; height: auto">
+                    <div class="panel panel-default animations"
+                         style="
+              border: 1px solid #d1e7fc;
+              border-radius: 6px;
+              width: 100%;
+              height: auto;
+              margin-bottom: 4px;
+              background-color: #d1e7fc;
+            ">
+                        <div class="item" style="padding: 10px 28px">
+                            <div class="panel-heading"
+                                 style="display: flex; justify-content: center">
+                                <p>
+                                    <img src="~/Upload/items1.png"
+                                         alt="hinh thumnail"
+                                         style="
+                      max-width: 30%;
+                      height: auto;
+                      margin: 20px 0px 20px 20px;
+                    " />
+                                </p>
+                            </div>
+                            <div class="panel-body">
+                                <h3 style="margin: 0px 0px 20px 20px">iPhone</h3>
+
+                                <p class="items-content" style="margin: 20px 0px 20px 20px; text-align: -webkit-center; ">
+                                    Tìm hiểu Apple Watch của bạn và tất cả những điều tuyệt vời
+                                    mà nó có thể làm - từ theo dõi nhịp tim đến điều khiển nhạc
+                                    và podcast để giữ cho bạn kết nối với tất cả những điều bạn quan tâm
+                                </p>
+                            </div>
+                            <div class="panel-footer clearfix"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-4 col-xs-12"
+                     style="max-width: 100%; height: auto; width: 100%">
+                    <div class="panel panel-default animations"
+                         style="
+              border: 1px solid #d1e7fc;
+              border-radius: 6px;
+              width: 100%;
+              height: auto;
+              margin-bottom: 4px;
+              background-color: #d1e7fc;
+            ">
+                        <div class="item" style=" padding: 10px 28px;">
+                            <div class="panel-heading"
+                                 style="display: flex; justify-content: center">
+                                <p>
+                                    <img src="~/Upload/items2.png"
+                                         alt="hinh thumnail"
+                                         style="
+                      max-width: 45%;
+                      height: auto;
+                      margin: 26px 0px 20px 12px;
+                    " />
+                                </p>
+                            </div>
+                            <div class="panel-body">
+                                <h3 style="margin: 8px auto">Apple Watch</h3>
+
+                                <p class="items-content" style="margin: 20px 0px 20px 20px; text-align: -webkit-center;">
+                                    Tìm hiểu Apple Watch của bạn và tất cả những điều tuyệt vời
+                                    mà nó có thể làm - từ theo dõi nhịp tim đến điều khiển nhạc
+                                    và podcast để giữ cho bạn kết nối với tất cả những điều bạn quan tâm.
+
+                                </p>
+                            </div>
+                            <div class="panel-footer clearfix"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row"
+             style="
+        width: 100%;
+        height: auto;
+        display: flex;
+        justify-content: center;
+        margin-top: 40px;
+      ">
+            <div class="border-body"
+                 style="display: flex; width: 100%; justify-content: space-evenly">
+                <div class="col-lg-4 col-md-4 col-xs-12"
+                     style="max-width: 100%; height: auto">
+                    <div class="panel panel-default animations"
+                         style="
+              border: 1px solid #d1e7fc;
+              border-radius: 6px;
+              width: 100%;
+              height: auto;
+              margin-bottom: 4px;
+              background-color: #d1e7fc;
+            ">
+                        <div class="item" style=" padding: 10px 28px;">
+                            <div class="panel-heading"
+                                 style="display: flex; justify-content: center">
+                                <p>
+                                    <img src="~/Upload/items3.png"
+                                         alt="hinh thumnail"
+                                         style="
+                      max-width: 30%;
+                      height: auto;
+                      margin: 20px 0px 20px 20px;
+                    " />
+                                </p>
+                            </div>
+                            <div class="panel-body">
+                                <h3 style="margin: 0px 0px 20px 20px">iPad</h3>
+
+                                <p class="items-content" style="margin: 20px 0px 20px 20px; text-align: -webkit-center;">
+                                    Khám phá tính linh hoạt của iPad, cho dù là cơ quan,
+                                    ở nhà hay giải trí. Chăm sóc công việc, như chuyển danh bạ
+                                    của bạn và đồng bộ hóa với iCloud. Học cách đa nhiệm với Split View.
+                                    Hoặc xem cách Apple Pencil có thể đưa iPad của bạn đi xa hơn nữa.
+                                </p>
+                            </div>
+                            <div class="panel-footer clearfix"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-4 col-xs-12"
+                     style="max-width: 100%; height: auto; width: 100%">
+                    <div class="panel panel-default animations"
+                         style="
+                                 border: 1px solid #d1e7fc;
+                                 border-radius: 6px;
+                                 width: 100%;
+                                 height: auto;
+                                 margin-bottom: 4px;
+                                 background-color: #d1e7fc;
+                     ">
+                        <div class="item" style=" padding: 10px 28px;">
+                            <div class="panel-heading"
+                                 style="display: flex; justify-content: center">
+                                <p>
+                                    <img src="~/Upload/items4.png"
+                                         alt="hinh thumnail"
+                                         style="
+                      max-width: 45%;
+                      height: auto;
+                      margin: 26px 0px 20px 12px;
+                    " />
+                                </p>
+                            </div>
+                            <div class="panel-body">
+                                <h3 style="margin: 8px auto">Mac</h3>
+
+                                <p class="items-content" style="margin: 20px 0px 20px 20px; text-align: -webkit-center;">
+                                    Làm cho máy Mac của bạn hoạt động theo cách bạn muốn.
+                                    Kết nối tất cả các tài khoản của bạn để có trải nghiệm liền mạch,
+                                    tìm các ứng dụng mới để hỗ trợ tổ chức và sáng tạo
+                                    hoặc chuẩn bị máy Mac của bạn để đạt hiệu suất cao nhất tại văn phòng.
+                                </p>
+                            </div>
+                            <div class="panel-footer clearfix"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+

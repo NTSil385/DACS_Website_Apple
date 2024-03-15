@@ -1,0 +1,156 @@
+﻿@model PagedList.IPagedList<MyWeb.Models.Post>
+@using PagedList.Mvc;
+
+@{
+    ViewBag.Title = "Post";
+    Layout = "~/Views/Share/Admin_ayoutPage1.cshtml";
+}
+
+@section Drop {
+
+
+
+}
+
+
+
+
+@section Btn {
+    <li class="nav-item">
+        <a class="nav-link" href="~/Admin/CreatePost">Tạo</a>
+    </li>
+}
+
+@section User {
+    <li class="nav-item" style="margin-left: 20px">
+        @{
+            var user = (MyWeb.Models.Admin)HttpContext.Current.Session["Admin"];
+            <i class="fa-solid fa-user"></i>
+            <span style="margin-left:4px"><strong>@user.FullName</strong></span>
+            <a class="dropdown-item" href="~/Home/Logout"> <strong><i class="fa-solid fa-right-from-bracket"></i></strong></a>
+
+        }
+
+    </li>
+}
+<h2>Post</h2>
+
+<div class="container" style="margin:110px auto">
+    <div class="row">
+        @using (Html.BeginForm("Post", "Admin", FormMethod.Get))
+        {
+            <div class="form-group form-inline">
+                <div class="items" style="display: inline-flex; align-items:center">
+                    @Html.TextBox("searchString", ViewBag.CurrentFilter as string, new { @class = "form-control" })
+                    <input type="submit" class="btn btn-primary" value="Search" style="margin: 0 5px" />
+                </div>
+                <style>
+                    .form-control {
+                        width: 200px;
+                        height: 40px;
+                        margin-left: 18px;
+                    }
+                </style>
+            </div>
+        }
+    </div>
+    <table class="table">
+        <thead>
+            <tr>
+
+                <th>
+                    Tiêu đề
+                </th>
+
+                <th>
+                    Người đăng
+                </th>
+                <th>
+                    Ngày đăng
+                </th>
+                <th>
+                    <strong>Chủ đề</strong>
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Title)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Author)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DateCreated)
+                    </td>
+                    <td>
+                        @{
+                            MyWeb.Models.MYWEBEntities1 db = new MyWeb.Models.MYWEBEntities1();
+                            var find = db.PostCategories.SingleOrDefault(s => s.ID == item.ID_postcategory);
+                            if (find != null)
+                            {
+                                <p>@find.Name_type</p>
+                            }
+                        }
+
+                    </td>
+
+                    <td>
+                        @Html.ActionLink("Sửa", "EditPost", new { id = item.PostID }, new { @class = "btn btn-primary" }) |
+                        <a href="~/Admin/DeletePost?id=@item.PostID" class="btn btn-primary" style="margin-top:5px">Xóa</a>
+
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <div>
+        Trang @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) / @Model.PageCount
+    </div>
+    <div>
+        @Html.PagedListPager(Model, page => Url.Action("Index", new { page, currentFilter = ViewBag.CurrentFilter }))
+        <style>
+            .pagination-container {
+            }
+
+            .pagination {
+                display: flex;
+            }
+
+            ul {
+                align-items: center;
+            }
+
+            li {
+                margin: 0 5px;
+            }
+
+            .active {
+                display: flex;
+                border: 1px solid #ff7956;
+                color: #fff;
+                border-radius: 6px;
+                width: 50px;
+                height: 35px;
+                background-color: #ff7956;
+                align-items: center;
+                text-align: center;
+                justify-content: center;
+            }
+
+                .active:hover {
+                    color: #ff7956;
+                    border: 1px solid #ff7956;
+                    background-color: aliceblue;
+                    cursor: pointer
+                }
+        </style>
+    </div>
+</div>
+
+
+</div>

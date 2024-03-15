@@ -1,0 +1,87 @@
+﻿@model MyWeb.Models.Event
+
+@{
+    ViewBag.Title = "createEvent";
+}
+
+<!doctype html>
+<html lang="en">
+<head>
+    <title></title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="~/assets/css/loginform.css" rel="stylesheet">
+</head>
+<body>
+        <div class="form" style="width:100%">
+            <form class="login-form" action="~/Admin/createEvent" method="post" enctype="multipart/form-data">
+                @Html.AntiForgeryToken()
+
+                <div class="form-horizontal">
+                  
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    
+                        <label>Tên sự kiện</label>
+                        <div class="col-md-10">
+                            <input type="text" placeholder="Event Name" class="form-control" name="Event_Name" value="" />
+                            @Html.ValidationMessageFor(model => model.Event_Name, "", new { @class = "text-danger" })
+                        </div>
+                    
+
+                    
+                        <label>Ngày bắt đầu</label> 
+                        <div class="col-md-10">
+                            <input type="date" placeholder="DataStart" name="DateStart" class="form-control" />
+                            @Html.ValidationMessageFor(model => model.DateStart, "", new { @class = "text-danger" })
+                        </div>
+                
+
+                   
+                        <label>Ngày kết thúc</label>
+                        <div class="col-md-10">
+                            <input type="date" placeholder="DateEnd" name="DateEnd" class="form-control" />
+                            @Html.ValidationMessageFor(model => model.DateEnd, "", new { @class = "text-danger" })
+                        </div>
+                    
+
+                    
+                        <label>Số lượng</label>
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.Quantity, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Quantity, "", new { @class = "text-danger" })
+                        </div>
+               
+
+                   
+                        <label>Thể thức tham gia</label>
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.Fomular, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Fomular, "", new { @class = "text-danger" })
+                        </div>
+                 
+                        <label>Phần trăm giảm</label>
+                        <div class="col-md-10">
+                            <input type="text" placeholder="Percent" class="form-control" name="DisscountPercent" value="" />
+                            @Html.ValidationMessageFor(model => model.DisscountPercent, "", new { @class = "text-danger" })
+                        </div>
+                   
+                    @ViewData["ErrorDate"]
+
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+                            <input type="submit" value="Tạo" class="btn btn-default" />
+                        </div>
+                    </div>
+                </div>
+            </form>
+
+            <div>
+                @Html.ActionLink("Trở về", "Event")
+            </div>
+
+        </div>
+
+ 
+</body>
+</html>
+
